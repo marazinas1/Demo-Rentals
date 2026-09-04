@@ -108,7 +108,7 @@ function AdminLayout() {
           <LanguageSwitcher />
 
           <a
-            href="https://dharma.revoo.lt/"
+            href="https://demo-rentals.deerva.com/"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setNavOpen(false)}
