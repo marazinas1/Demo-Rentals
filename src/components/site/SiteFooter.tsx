@@ -82,6 +82,9 @@ export function SiteFooter() {
             <LocaleLink to="/privatumo-politika" className="hover:text-warm-white">
               {legal.privacy.title}
             </LocaleLink>
+            <a href="/admin" className="hover:text-warm-white">
+              Admin
+            </a>
             <LanguageSwitcher tone="light" className="text-warm-white/70" />
           </nav>
         </div>
