@@ -22,7 +22,6 @@ import {
 } from "@/components/admin/settings/IntegrationsSection";
 import { ApiAccessSection } from "@/components/admin/settings/ApiAccessSection";
 import { EmailTestSection } from "@/components/admin/settings/EmailTestSection";
-import { UsersSection } from "@/components/admin/settings/UsersSection";
 import { PLATFORM_NAME } from "@/lib/brand";
 import { useBrandedTitle } from "@/hooks/useBrandedTitle";
 
@@ -171,7 +170,6 @@ function PropertySettingsPage() {
     ...SETTINGS_SECTIONS.map((s) => ({ id: s.id as NavId, icon: s.icon, title: t(s.titleKey) })),
     { id: "integrations", icon: "🔌", title: t("settings.nav.integrations") },
     { id: "api", icon: "🔑", title: t("settings.nav.api") },
-    { id: "users", icon: "👥", title: t("settings.nav.users") },
   ];
 
   const section = SETTINGS_SECTIONS.find((s) => s.id === active);
@@ -223,8 +221,6 @@ function PropertySettingsPage() {
                 <Loader2 className="h-4 w-4 animate-spin" />
                 {t("common.loading")}
               </div>
-            ) : active === "users" ? (
-              <UsersSection canEdit={canEdit} />
             ) : active === "api" ? (
               <ApiAccessSection canEdit={canEdit} />
             ) : active === "integrations" ? (

@@ -2,7 +2,7 @@ import { createFileRoute, Link, Outlet, useRouterState, Navigate } from "@tansta
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
-import { Building2, Calendar, FileEdit, FileText, Globe, Home, LayoutDashboard, LogOut, Menu, Settings2, Sparkles, Wallet } from "lucide-react";
+import { BarChart3, Building2, Calendar, FileEdit, FileText, Globe, Home, LayoutDashboard, LogOut, Menu, Settings2, Sparkles, UserCog, Wallet } from "lucide-react";
 import { getMyRole } from "@/lib/properties.functions";
 import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "react-i18next";
@@ -58,7 +58,11 @@ function AdminLayout() {
     { to: "/admin/expenses", label: t("nav.expenses"), icon: Wallet },
     // Settings (and user management) are owner-level only.
     ...(role.isOwner
-      ? [{ to: "/admin/settings", label: t("nav.settings"), icon: Settings2 } as const]
+      ? ([
+          { to: "/admin/analytics", label: t("nav.analytics"), icon: BarChart3 },
+          { to: "/admin/users", label: t("nav.users"), icon: UserCog },
+          { to: "/admin/settings", label: t("nav.settings"), icon: Settings2 },
+        ] as const)
       : []),
     { to: "/admin/content", label: t("nav.content"), icon: FileEdit },
   ] as const;

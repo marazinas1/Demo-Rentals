@@ -634,6 +634,7 @@
     "lt": "Lietuvių"
   },
   "nav": {
+    "analytics": "Analitika",
     "bookings": "Rezervacijos",
     "content": "Turinys",
     "contracts": "Sutartys",
@@ -643,6 +644,7 @@
     "properties": "Objektai",
     "settings": "Bendrieji nustatymai",
     "signOut": "Atsijungti",
+    "users": "Vartotojai",
     "website": "Svetainė"
   },
   "properties": {
