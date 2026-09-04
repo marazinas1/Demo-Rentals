@@ -1515,6 +1515,7 @@ export type Database = {
     }
     Functions: {
       admin_get_door_code: { Args: { _property_id: string }; Returns: string }
+      analytics_summary: { Args: { _from: string; _to: string }; Returns: Json }
       cancel_expired_pending_bookings: { Args: never; Returns: number }
       claim_invoice_number: {
         Args: never
