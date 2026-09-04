@@ -96,7 +96,17 @@ function AdminLayout() {
           })}
       </nav>
       <div className="mt-auto space-y-1 border-t border-sidebar-border px-2 py-3 text-sidebar-foreground">
+          {/* Signed-in user: name/email + role */}
+          <div className="mb-2 rounded-md px-3 py-2">
+            <p className="truncate text-sm font-medium text-sidebar-foreground">
+              {role.email || t("nav.dashboard")}
+            </p>
+            <p className="mt-0.5 text-[11px] uppercase tracking-[0.18em] text-sidebar-foreground/60">
+              {roleLabel}
+            </p>
+          </div>
           <LanguageSwitcher />
+
           <a
             href="https://dharma.revoo.lt/"
             target="_blank"
