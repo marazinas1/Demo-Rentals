@@ -1,5 +1,5 @@
 /** Platformos (produkto) pavadinimas. Vienintelė vieta, kur jis apibrėžiamas. */
-export const PLATFORM_NAME = "Revoo";
+export const PLATFORM_NAME = "Deerva";
 
 /**
  * Sudaro naršyklės kortelės pavadinimą.

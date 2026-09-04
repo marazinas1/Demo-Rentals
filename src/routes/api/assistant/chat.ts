@@ -89,7 +89,7 @@ async function handlePost(request: Request) {
   const settingsKnowledge = ctx.buildSettingsKnowledge(lang, settings);
   const system = buildSystemPrompt({
     lang,
-    brandName: settings.displayName?.trim() || "Revoo",
+    brandName: settings.displayName?.trim() || "Deerva",
     settingsKnowledge,
     propertiesSummary,
     businessAnalytics,

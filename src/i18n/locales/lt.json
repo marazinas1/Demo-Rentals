@@ -4,14 +4,14 @@
     "noAdminTitle": "Neturite administratoriaus teisių"
   },
   "assistant": {
-    "title": "Revoo Asistentė",
+    "title": "Deerva Asistentė",
     "subtitle": "\n",
     "open": "Atidaryti pagalbininką",
     "clear": "Išvalyti pokalbį",
     "cleared": "Pokalbis išvalytas.",
     "send": "Siųsti",
     "placeholder": "Paklauskite, kaip ką nors padaryti…",
-    "intro": "Sveiki! 👋 Esu Eva –  virtuali Revoo asistentė. Galiu atsakyti į klausimus, paaiškinti, kaip atlikti užduotis šioje sistemoje ir padėti rasti reikiamą informaciją. Kuo galiu padėti?",
+    "intro": "Sveiki! 👋 Esu Eva –  virtuali Deerva asistentė. Galiu atsakyti į klausimus, paaiškinti, kaip atlikti užduotis šioje sistemoje ir padėti rasti reikiamą informaciją. Kuo galiu padėti?",
     "suggestions": [
       "Koks šiuo metu viešbučio užimtumas ir ar jis normalus rinkoje?",
       "Kiek pajamų uždirbome šiandien, vakar ir šiais metais?",
