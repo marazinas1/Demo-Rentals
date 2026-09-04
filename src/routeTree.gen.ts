@@ -17,7 +17,9 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BanketineSaleRouteImport } from './routes/banketine-sale'
 import { Route as DovanuKuponaiRouteImport } from './routes/dovanu-kuponai'
 import { Route as EnRouteRouteImport } from './routes/en/route'
+import { Route as HomeV2RouteImport } from './routes/home-v2'
 import { Route as KontaktaiRouteImport } from './routes/kontaktai'
+import { Route as LaisviKambariaiRouteImport } from './routes/laisvi-kambariai'
 import { Route as NamelisRouteImport } from './routes/namelis'
 import { Route as PrivatumoPolitikaRouteImport } from './routes/privatumo-politika'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
@@ -38,7 +40,9 @@ import { Route as EnApartamentaiRouteImport } from './routes/en/apartamentai'
 import { Route as EnApieRouteImport } from './routes/en/apie'
 import { Route as EnBanketineSaleRouteImport } from './routes/en/banketine-sale'
 import { Route as EnDovanuKuponaiRouteImport } from './routes/en/dovanu-kuponai'
+import { Route as EnHomeV2RouteImport } from './routes/en/home-v2'
 import { Route as EnKontaktaiRouteImport } from './routes/en/kontaktai'
+import { Route as EnLaisviKambariaiRouteImport } from './routes/en/laisvi-kambariai'
 import { Route as EnNamelisRouteImport } from './routes/en/namelis'
 import { Route as EnPrivatumoPolitikaRouteImport } from './routes/en/privatumo-politika'
 import { Route as EnRestobarasRouteImport } from './routes/en/restobaras'
@@ -54,6 +58,7 @@ import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authen
 import { Route as AuthenticatedStaffIndexRouteImport } from './routes/_authenticated/staff.index'
 import { Route as AuthenticatedStaffIdRouteImport } from './routes/_authenticated/staff.$id'
 import { Route as ApartamentaiTipasCategorySlugRouteImport } from './routes/apartamentai.tipas.$categorySlug'
+import { Route as ApiAssistantChatRouteImport } from './routes/api/assistant/chat'
 import { Route as ApiPublicIcalSyncRouteImport } from './routes/api/public/ical-sync'
 import { Route as ApiPublicNotificationsCronRouteImport } from './routes/api/public/notifications-cron'
 import { Route as EnApartamentaiIndexRouteImport } from './routes/en/apartamentai.index'
@@ -124,9 +129,19 @@ const EnRouteRoute = EnRouteRouteImport.update({
   path: '/en',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HomeV2Route = HomeV2RouteImport.update({
+  id: '/home-v2',
+  path: '/home-v2',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KontaktaiRoute = KontaktaiRouteImport.update({
   id: '/kontaktai',
   path: '/kontaktai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LaisviKambariaiRoute = LaisviKambariaiRouteImport.update({
+  id: '/laisvi-kambariai',
+  path: '/laisvi-kambariai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NamelisRoute = NamelisRouteImport.update({
@@ -230,9 +245,19 @@ const EnDovanuKuponaiRoute = EnDovanuKuponaiRouteImport.update({
   path: '/dovanu-kuponai',
   getParentRoute: () => EnRouteRoute,
 } as any)
+const EnHomeV2Route = EnHomeV2RouteImport.update({
+  id: '/home-v2',
+  path: '/home-v2',
+  getParentRoute: () => EnRouteRoute,
+} as any)
 const EnKontaktaiRoute = EnKontaktaiRouteImport.update({
   id: '/kontaktai',
   path: '/kontaktai',
+  getParentRoute: () => EnRouteRoute,
+} as any)
+const EnLaisviKambariaiRoute = EnLaisviKambariaiRouteImport.update({
+  id: '/laisvi-kambariai',
+  path: '/laisvi-kambariai',
   getParentRoute: () => EnRouteRoute,
 } as any)
 const EnNamelisRoute = EnNamelisRouteImport.update({
@@ -316,6 +341,11 @@ const ApartamentaiTipasCategorySlugRoute =
     path: '/tipas/$categorySlug',
     getParentRoute: () => ApartamentaiRoute,
   } as any)
+const ApiAssistantChatRoute = ApiAssistantChatRouteImport.update({
+  id: '/api/assistant/chat',
+  path: '/api/assistant/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicIcalSyncRoute = ApiPublicIcalSyncRouteImport.update({
   id: '/api/public/ical-sync',
   path: '/api/public/ical-sync',
@@ -490,7 +520,9 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/banketine-sale': typeof BanketineSaleRoute
   '/dovanu-kuponai': typeof DovanuKuponaiRoute
+  '/home-v2': typeof HomeV2Route
   '/kontaktai': typeof KontaktaiRoute
+  '/laisvi-kambariai': typeof LaisviKambariaiRoute
   '/namelis': typeof NamelisRoute
   '/privatumo-politika': typeof PrivatumoPolitikaRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -508,7 +540,9 @@ export interface FileRoutesByFullPath {
   '/en/apie': typeof EnApieRouteWithChildren
   '/en/banketine-sale': typeof EnBanketineSaleRoute
   '/en/dovanu-kuponai': typeof EnDovanuKuponaiRoute
+  '/en/home-v2': typeof EnHomeV2Route
   '/en/kontaktai': typeof EnKontaktaiRoute
+  '/en/laisvi-kambariai': typeof EnLaisviKambariaiRoute
   '/en/namelis': typeof EnNamelisRoute
   '/en/privatumo-politika': typeof EnPrivatumoPolitikaRoute
   '/en/restobaras': typeof EnRestobarasRoute
@@ -525,6 +559,7 @@ export interface FileRoutesByFullPath {
   '/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/staff/$id': typeof AuthenticatedStaffIdRoute
   '/apartamentai/tipas/$categorySlug': typeof ApartamentaiTipasCategorySlugRoute
+  '/api/assistant/chat': typeof ApiAssistantChatRoute
   '/api/public/ical-sync': typeof ApiPublicIcalSyncRoute
   '/api/public/notifications-cron': typeof ApiPublicNotificationsCronRoute
   '/en/apartamentai/$propertyId': typeof EnApartamentaiPropertyIdRoute
@@ -563,7 +598,9 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/banketine-sale': typeof BanketineSaleRoute
   '/dovanu-kuponai': typeof DovanuKuponaiRoute
+  '/home-v2': typeof HomeV2Route
   '/kontaktai': typeof KontaktaiRoute
+  '/laisvi-kambariai': typeof LaisviKambariaiRoute
   '/namelis': typeof NamelisRoute
   '/privatumo-politika': typeof PrivatumoPolitikaRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -577,7 +614,9 @@ export interface FileRoutesByTo {
   '/apie/taisykles': typeof ApieTaisyklesRoute
   '/en/banketine-sale': typeof EnBanketineSaleRoute
   '/en/dovanu-kuponai': typeof EnDovanuKuponaiRoute
+  '/en/home-v2': typeof EnHomeV2Route
   '/en/kontaktai': typeof EnKontaktaiRoute
+  '/en/laisvi-kambariai': typeof EnLaisviKambariaiRoute
   '/en/namelis': typeof EnNamelisRoute
   '/en/privatumo-politika': typeof EnPrivatumoPolitikaRoute
   '/en/restobaras': typeof EnRestobarasRoute
@@ -594,6 +633,7 @@ export interface FileRoutesByTo {
   '/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/staff/$id': typeof AuthenticatedStaffIdRoute
   '/apartamentai/tipas/$categorySlug': typeof ApartamentaiTipasCategorySlugRoute
+  '/api/assistant/chat': typeof ApiAssistantChatRoute
   '/api/public/ical-sync': typeof ApiPublicIcalSyncRoute
   '/api/public/notifications-cron': typeof ApiPublicNotificationsCronRoute
   '/en/apartamentai/$propertyId': typeof EnApartamentaiPropertyIdRoute
@@ -637,7 +677,9 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/banketine-sale': typeof BanketineSaleRoute
   '/dovanu-kuponai': typeof DovanuKuponaiRoute
+  '/home-v2': typeof HomeV2Route
   '/kontaktai': typeof KontaktaiRoute
+  '/laisvi-kambariai': typeof LaisviKambariaiRoute
   '/namelis': typeof NamelisRoute
   '/privatumo-politika': typeof PrivatumoPolitikaRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -655,7 +697,9 @@ export interface FileRoutesById {
   '/en/apie': typeof EnApieRouteWithChildren
   '/en/banketine-sale': typeof EnBanketineSaleRoute
   '/en/dovanu-kuponai': typeof EnDovanuKuponaiRoute
+  '/en/home-v2': typeof EnHomeV2Route
   '/en/kontaktai': typeof EnKontaktaiRoute
+  '/en/laisvi-kambariai': typeof EnLaisviKambariaiRoute
   '/en/namelis': typeof EnNamelisRoute
   '/en/privatumo-politika': typeof EnPrivatumoPolitikaRoute
   '/en/restobaras': typeof EnRestobarasRoute
@@ -672,6 +716,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/_authenticated/staff/$id': typeof AuthenticatedStaffIdRoute
   '/apartamentai/tipas/$categorySlug': typeof ApartamentaiTipasCategorySlugRoute
+  '/api/assistant/chat': typeof ApiAssistantChatRoute
   '/api/public/ical-sync': typeof ApiPublicIcalSyncRoute
   '/api/public/notifications-cron': typeof ApiPublicNotificationsCronRoute
   '/en/apartamentai/$propertyId': typeof EnApartamentaiPropertyIdRoute
@@ -715,7 +760,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/banketine-sale'
     | '/dovanu-kuponai'
+    | '/home-v2'
     | '/kontaktai'
+    | '/laisvi-kambariai'
     | '/namelis'
     | '/privatumo-politika'
     | '/reset-password'
@@ -733,7 +780,9 @@ export interface FileRouteTypes {
     | '/en/apie'
     | '/en/banketine-sale'
     | '/en/dovanu-kuponai'
+    | '/en/home-v2'
     | '/en/kontaktai'
+    | '/en/laisvi-kambariai'
     | '/en/namelis'
     | '/en/privatumo-politika'
     | '/en/restobaras'
@@ -750,6 +799,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/staff/$id'
     | '/apartamentai/tipas/$categorySlug'
+    | '/api/assistant/chat'
     | '/api/public/ical-sync'
     | '/api/public/notifications-cron'
     | '/en/apartamentai/$propertyId'
@@ -788,7 +838,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/banketine-sale'
     | '/dovanu-kuponai'
+    | '/home-v2'
     | '/kontaktai'
+    | '/laisvi-kambariai'
     | '/namelis'
     | '/privatumo-politika'
     | '/reset-password'
@@ -802,7 +854,9 @@ export interface FileRouteTypes {
     | '/apie/taisykles'
     | '/en/banketine-sale'
     | '/en/dovanu-kuponai'
+    | '/en/home-v2'
     | '/en/kontaktai'
+    | '/en/laisvi-kambariai'
     | '/en/namelis'
     | '/en/privatumo-politika'
     | '/en/restobaras'
@@ -819,6 +873,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/staff/$id'
     | '/apartamentai/tipas/$categorySlug'
+    | '/api/assistant/chat'
     | '/api/public/ical-sync'
     | '/api/public/notifications-cron'
     | '/en/apartamentai/$propertyId'
@@ -861,7 +916,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/banketine-sale'
     | '/dovanu-kuponai'
+    | '/home-v2'
     | '/kontaktai'
+    | '/laisvi-kambariai'
     | '/namelis'
     | '/privatumo-politika'
     | '/reset-password'
@@ -879,7 +936,9 @@ export interface FileRouteTypes {
     | '/en/apie'
     | '/en/banketine-sale'
     | '/en/dovanu-kuponai'
+    | '/en/home-v2'
     | '/en/kontaktai'
+    | '/en/laisvi-kambariai'
     | '/en/namelis'
     | '/en/privatumo-politika'
     | '/en/restobaras'
@@ -896,6 +955,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/settings'
     | '/_authenticated/staff/$id'
     | '/apartamentai/tipas/$categorySlug'
+    | '/api/assistant/chat'
     | '/api/public/ical-sync'
     | '/api/public/notifications-cron'
     | '/en/apartamentai/$propertyId'
@@ -939,7 +999,9 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   BanketineSaleRoute: typeof BanketineSaleRoute
   DovanuKuponaiRoute: typeof DovanuKuponaiRoute
+  HomeV2Route: typeof HomeV2Route
   KontaktaiRoute: typeof KontaktaiRoute
+  LaisviKambariaiRoute: typeof LaisviKambariaiRoute
   NamelisRoute: typeof NamelisRoute
   PrivatumoPolitikaRoute: typeof PrivatumoPolitikaRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
@@ -948,6 +1010,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TaisyklesRoute: typeof TaisyklesRoute
   RezervacijaPatvirtintaRoute: typeof RezervacijaPatvirtintaRoute
+  ApiAssistantChatRoute: typeof ApiAssistantChatRoute
   ApiPublicIcalSyncRoute: typeof ApiPublicIcalSyncRoute
   ApiPublicNotificationsCronRoute: typeof ApiPublicNotificationsCronRoute
   ApiPublicV1AvailabilityRoute: typeof ApiPublicV1AvailabilityRoute
@@ -1017,11 +1080,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/home-v2': {
+      id: '/home-v2'
+      path: '/home-v2'
+      fullPath: '/home-v2'
+      preLoaderRoute: typeof HomeV2RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kontaktai': {
       id: '/kontaktai'
       path: '/kontaktai'
       fullPath: '/kontaktai'
       preLoaderRoute: typeof KontaktaiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/laisvi-kambariai': {
+      id: '/laisvi-kambariai'
+      path: '/laisvi-kambariai'
+      fullPath: '/laisvi-kambariai'
+      preLoaderRoute: typeof LaisviKambariaiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/namelis': {
@@ -1164,11 +1241,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnDovanuKuponaiRouteImport
       parentRoute: typeof EnRouteRoute
     }
+    '/en/home-v2': {
+      id: '/en/home-v2'
+      path: '/home-v2'
+      fullPath: '/en/home-v2'
+      preLoaderRoute: typeof EnHomeV2RouteImport
+      parentRoute: typeof EnRouteRoute
+    }
     '/en/kontaktai': {
       id: '/en/kontaktai'
       path: '/kontaktai'
       fullPath: '/en/kontaktai'
       preLoaderRoute: typeof EnKontaktaiRouteImport
+      parentRoute: typeof EnRouteRoute
+    }
+    '/en/laisvi-kambariai': {
+      id: '/en/laisvi-kambariai'
+      path: '/laisvi-kambariai'
+      fullPath: '/en/laisvi-kambariai'
+      preLoaderRoute: typeof EnLaisviKambariaiRouteImport
       parentRoute: typeof EnRouteRoute
     }
     '/en/namelis': {
@@ -1275,6 +1366,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/apartamentai/tipas/$categorySlug'
       preLoaderRoute: typeof ApartamentaiTipasCategorySlugRouteImport
       parentRoute: typeof ApartamentaiRoute
+    }
+    '/api/assistant/chat': {
+      id: '/api/assistant/chat'
+      path: '/api/assistant/chat'
+      fullPath: '/api/assistant/chat'
+      preLoaderRoute: typeof ApiAssistantChatRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/api/public/ical-sync': {
       id: '/api/public/ical-sync'
@@ -1588,7 +1686,9 @@ interface EnRouteRouteChildren {
   EnApieRoute: typeof EnApieRouteWithChildren
   EnBanketineSaleRoute: typeof EnBanketineSaleRoute
   EnDovanuKuponaiRoute: typeof EnDovanuKuponaiRoute
+  EnHomeV2Route: typeof EnHomeV2Route
   EnKontaktaiRoute: typeof EnKontaktaiRoute
+  EnLaisviKambariaiRoute: typeof EnLaisviKambariaiRoute
   EnNamelisRoute: typeof EnNamelisRoute
   EnPrivatumoPolitikaRoute: typeof EnPrivatumoPolitikaRoute
   EnRestobarasRoute: typeof EnRestobarasRoute
@@ -1603,7 +1703,9 @@ const EnRouteRouteChildren: EnRouteRouteChildren = {
   EnApieRoute: EnApieRouteWithChildren,
   EnBanketineSaleRoute: EnBanketineSaleRoute,
   EnDovanuKuponaiRoute: EnDovanuKuponaiRoute,
+  EnHomeV2Route: EnHomeV2Route,
   EnKontaktaiRoute: EnKontaktaiRoute,
+  EnLaisviKambariaiRoute: EnLaisviKambariaiRoute,
   EnNamelisRoute: EnNamelisRoute,
   EnPrivatumoPolitikaRoute: EnPrivatumoPolitikaRoute,
   EnRestobarasRoute: EnRestobarasRoute,
@@ -1701,7 +1803,9 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   BanketineSaleRoute: BanketineSaleRoute,
   DovanuKuponaiRoute: DovanuKuponaiRoute,
+  HomeV2Route: HomeV2Route,
   KontaktaiRoute: KontaktaiRoute,
+  LaisviKambariaiRoute: LaisviKambariaiRoute,
   NamelisRoute: NamelisRoute,
   PrivatumoPolitikaRoute: PrivatumoPolitikaRoute,
   ResetPasswordRoute: ResetPasswordRoute,
@@ -1710,6 +1814,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TaisyklesRoute: TaisyklesRoute,
   RezervacijaPatvirtintaRoute: RezervacijaPatvirtintaRoute,
+  ApiAssistantChatRoute: ApiAssistantChatRoute,
   ApiPublicIcalSyncRoute: ApiPublicIcalSyncRoute,
   ApiPublicNotificationsCronRoute: ApiPublicNotificationsCronRoute,
   ApiPublicV1AvailabilityRoute: ApiPublicV1AvailabilityRoute,

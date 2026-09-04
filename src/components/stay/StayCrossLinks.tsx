@@ -30,7 +30,7 @@ export function StayCrossLinks({ currentId }: { currentId: string }) {
             <LocaleLink
               to="/apartamentai/$propertyId"
               params={{ propertyId: slugFor(stay.id) }}
-              className="group block overflow-hidden rounded-2xl bg-warm-white shadow-soft transition-shadow duration-500 hover:shadow-lift"
+              className="group block overflow-hidden rounded-md bg-warm-white shadow-soft transition-shadow duration-500 hover:shadow-lift"
             >
               <div className="aspect-[4/3] overflow-hidden bg-linen">
                 {stay.image ? (

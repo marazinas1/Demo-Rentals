@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { useBooking } from "@/components/site/booking-context";
 import { LocaleLink } from "@/components/site/LocaleLink";
 import { Reveal } from "@/components/site/Reveal";
+import { PropertyGallery } from "@/components/stay/PropertyGallery";
 import { useContent } from "@/content";
 import { formatPrice, type PropertyView } from "@/lib/property-view";
 import { usePropertySlug } from "@/lib/property-slug";
@@ -36,20 +37,10 @@ export function PropertyCard({
         params={{ propertyId: slugFor(property.id) }}
         search={dateSearch}
         aria-label={property.name}
-        className="group block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2"
+        className="group block h-full rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2"
       >
-      <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-warm-white shadow-soft transition-shadow duration-500 hover:shadow-lift">
-        <div className="aspect-[4/3] overflow-hidden bg-linen">
-          {property.image ? (
-            <img
-              src={property.image}
-              alt={property.imageAlt}
-              loading="lazy"
-              decoding="async"
-              className="photo-zoom h-full w-full object-cover"
-            />
-          ) : null}
-        </div>
+      <article className="flex h-full flex-col overflow-hidden rounded-md bg-warm-white shadow-soft transition-shadow duration-500 hover:shadow-lift">
+        <PropertyGallery images={property.images} alt={property.imageAlt} eager={index === 0} />
 
         <div className="flex flex-1 flex-col p-7">
           <p className="label-caps text-stone">
@@ -85,7 +76,7 @@ export function PropertyCard({
                   { name: property.name },
                 );
               }}
-              className="rounded-full bg-sage px-5 py-2.5 text-sm font-medium text-warm-white transition-colors hover:bg-sage-deep"
+              className="rounded-md bg-sage px-5 py-2.5 text-sm font-medium text-warm-white transition-colors hover:bg-sage-deep"
             >
               {common.cta.book}
             </button>

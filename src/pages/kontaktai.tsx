@@ -68,7 +68,7 @@ function ContactsPage() {
       />
 
       <PageSection>
-        <div className="max-w-7xl">
+        <div className="max-w-[84rem]">
           <div className="grid gap-12 sm:grid-cols-3">
             <Reveal>
               <MapPin className="mx-auto h-5 w-5 text-sage" aria-hidden />
@@ -106,13 +106,13 @@ function ContactsPage() {
         </div>
 
         <Reveal delay={80} className="mt-16">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-[84rem]">
             <ContactForm />
           </div>
         </Reveal>
 
         <Reveal delay={80} className="mt-16">
-          <div className="mx-auto max-w-7xl overflow-hidden rounded-2xl shadow-soft [filter:grayscale(1)_contrast(0.95)]">
+          <div className="mx-auto max-w-[84rem] overflow-hidden rounded-md shadow-soft [filter:grayscale(1)_contrast(0.95)]">
             <div className="h-[360px] lg:h-[500px]">
               <ClientOnly fallback={<MapSkeleton />}>
                 <Suspense fallback={<MapSkeleton />}>

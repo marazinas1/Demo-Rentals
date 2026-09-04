@@ -1,11 +1,10 @@
 
-import { AvailabilityBand } from "@/components/home/AvailabilityBand";
 import { BookingBand } from "@/components/home/BookingBand";
 import { ExtrasSection } from "@/components/home/ExtrasSection";
-import { Hero } from "@/components/home/Hero";
+import { HeroV2 } from "@/components/home/HeroV2";
 import { IntroStrip } from "@/components/home/IntroStrip";
 import { LocationSection } from "@/components/home/LocationSection";
-import { Ratings } from "@/components/home/Ratings";
+import { RatingsAndTestimonials } from "@/components/home/RatingsAndTestimonials";
 import { StaysSection } from "@/components/home/StaysSection";
 import { getContent } from "@/content";
 import { SITE_URL } from "@/data/nav";
@@ -71,13 +70,12 @@ function Index() {
 
   return (
     <>
-      <Hero />
+      <HeroV2 />
       <IntroStrip />
-      <AvailabilityBand />
       <StaysSection {...(properties ? { initialProperties: properties } : {})} />
       <LocationSection />
       <ExtrasSection />
-      <Ratings />
+      <RatingsAndTestimonials />
       <BookingBand />
     </>
   );

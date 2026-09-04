@@ -3,6 +3,26 @@
     "noAdminText": "Please contact the system administrator to be granted access.",
     "noAdminTitle": "You don't have administrator rights"
   },
+  "assistant": {
+    "title": "Revoo assistant",
+    "subtitle": "Explains where and how to do something. You make the changes yourself.",
+    "open": "Open assistant",
+    "clear": "Clear conversation",
+    "cleared": "Conversation cleared.",
+    "send": "Send",
+    "placeholder": "Ask how to do something…",
+    "intro": "Hi! I'll help you find your way around the admin panel. For example:",
+    "suggestions": [
+      "What is our current occupancy and is it normal for the market?",
+      "How much revenue did we make today, yesterday and this year?",
+      "What is our ROI and how can I increase occupancy?",
+      "How do I change room photos on the website?"
+    ],
+    "disclaimer": "The assistant only advises – it never changes settings.",
+    "error": "Could not get a reply. Please try again.",
+    "empty": "No reply received – try rephrasing the question.",
+    "tooLong": "Message too long (max {{max}} characters)."
+  },
   "auth": {
     "backToLogin": "← Back to sign in",
     "busy": "Working...",

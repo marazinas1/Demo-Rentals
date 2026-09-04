@@ -41,15 +41,15 @@ export function PropertyGridSkeleton() {
       {[0, 1, 2].map((index) => (
         <div
           key={index}
-          className="overflow-hidden rounded-2xl bg-warm-white shadow-soft"
+          className="overflow-hidden rounded-md bg-warm-white shadow-soft"
           aria-hidden
         >
           <div className="aspect-[4/3] animate-pulse bg-linen" />
           <div className="space-y-4 p-7">
-            <div className="h-3 w-20 animate-pulse rounded-full bg-linen" />
-            <div className="h-5 w-3/4 animate-pulse rounded-full bg-linen" />
-            <div className="h-3 w-full animate-pulse rounded-full bg-linen" />
-            <div className="h-3 w-5/6 animate-pulse rounded-full bg-linen" />
+            <div className="h-3 w-20 animate-pulse rounded-md bg-linen" />
+            <div className="h-5 w-3/4 animate-pulse rounded-md bg-linen" />
+            <div className="h-3 w-full animate-pulse rounded-md bg-linen" />
+            <div className="h-3 w-5/6 animate-pulse rounded-md bg-linen" />
           </div>
         </div>
       ))}
@@ -72,7 +72,7 @@ function ContactFallback() {
 export function PropertyEmpty() {
   const { common } = useContent();
   return (
-    <div className="rounded-2xl bg-warm-white px-8 py-16 text-center shadow-soft">
+    <div className="rounded-md bg-warm-white px-8 py-16 text-center shadow-soft">
       <h2 className="font-display text-2xl font-medium text-ink">{common.stays.emptyTitle}</h2>
       <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-stone">
         {common.stays.emptyText}
@@ -85,7 +85,7 @@ export function PropertyEmpty() {
 export function PropertyError({ onRetry }: { onRetry: () => void }) {
   const { common } = useContent();
   return (
-    <div className="rounded-2xl bg-warm-white px-8 py-16 text-center shadow-soft" role="alert">
+    <div className="rounded-md bg-warm-white px-8 py-16 text-center shadow-soft" role="alert">
       <h2 className="font-display text-2xl font-medium text-ink">{common.stays.errorTitle}</h2>
       <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-stone">
         {common.stays.errorText}
@@ -93,7 +93,7 @@ export function PropertyError({ onRetry }: { onRetry: () => void }) {
       <button
         type="button"
         onClick={onRetry}
-        className="mt-7 rounded-full bg-sage px-6 py-3 text-sm font-medium text-warm-white transition-colors hover:bg-sage-deep"
+        className="mt-7 rounded-md bg-sage px-6 py-3 text-sm font-medium text-warm-white transition-colors hover:bg-sage-deep"
       >
         {common.stays.retry}
       </button>

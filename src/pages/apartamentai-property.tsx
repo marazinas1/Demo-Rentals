@@ -73,7 +73,7 @@ export function propertyRoute(locale: Locale) {
         if (slug !== params.propertyId) {
           throw redirect({
             to: localizePath("/apartamentai/$propertyId", locale) as never,
-            params: { propertyId: slug } as any,
+            params: { propertyId: slug },
             search: search as never,
             statusCode: 301,
           });
@@ -93,7 +93,7 @@ export function propertyRoute(locale: Locale) {
         if (localSlug && localSlug !== params.propertyId) {
           throw redirect({
             to: localizePath("/apartamentai/$propertyId", locale) as never,
-            params: { propertyId: localSlug } as any,
+            params: { propertyId: localSlug },
             search: search as never,
           });
         }
@@ -242,7 +242,7 @@ function PropertyPage({ locale }: { locale: Locale }) {
         <button
           type="button"
           onClick={openBooking}
-          className="rounded-full bg-sage px-7 py-3.5 text-sm font-medium text-warm-white transition-colors hover:bg-sage-deep"
+          className="rounded-md bg-sage px-7 py-3.5 text-sm font-medium text-warm-white transition-colors hover:bg-sage-deep"
         >
           {c.common.cta.book}
           {view.priceFrom === null
@@ -258,39 +258,14 @@ function PropertyPage({ locale }: { locale: Locale }) {
         imageAlt={view.imageAlt}
         facts={facts}
         amenities={view.amenities}
-      >
-        <div className="mt-16 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)] lg:items-start">
-          <Reveal direction="left">
-            <AvailabilityCalendar
-              occupied={data.occupied}
-              range={range}
-              onRangeChange={setRange}
-            />
-          </Reveal>
-          <Reveal direction="right" delay={100}>
-            <div className="rounded-2xl bg-linen p-8">
-              <p className="label-caps text-sage">{c.common.stays.availabilityTitle}</p>
-              <p className="mt-4 text-sm leading-relaxed text-stone">
-                {data.occupied.length ? c.common.stays.availabilityLead : c.common.stays.noOccupied}
-              </p>
-              <button
-                type="button"
-                onClick={openBooking}
-                className="mt-6 w-full rounded-full bg-sage px-6 py-3.5 text-sm font-medium text-warm-white transition-colors hover:bg-sage-deep"
-              >
-                {range?.from && range?.to ? c.common.cta.book : c.common.stays.pickDates}
-              </button>
-            </div>
-          </Reveal>
-        </div>
-      </PropertyIntro>
+      />
 
       {grid.length ? (
         <PageSection tone="linen">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {grid.map((url, index) => (
               <Reveal key={url} delay={index * 90}>
-                <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-warm-white shadow-soft">
+                <div className="aspect-[4/3] overflow-hidden rounded-md bg-warm-white shadow-soft">
                   <img
                     src={url}
                     alt={`${data.name} — ${c.common.brand}`}
@@ -304,6 +279,33 @@ function PropertyPage({ locale }: { locale: Locale }) {
           </div>
         </PageSection>
       ) : null}
+
+      <PageSection>
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)] lg:items-start">
+          <Reveal direction="left">
+            <AvailabilityCalendar
+              occupied={data.occupied}
+              range={range}
+              onRangeChange={setRange}
+            />
+          </Reveal>
+          <Reveal direction="right" delay={100}>
+            <div className="rounded-md bg-linen p-8">
+              <p className="label-caps text-sage">{c.common.stays.availabilityTitle}</p>
+              <p className="mt-4 text-sm leading-relaxed text-stone">
+                {data.occupied.length ? c.common.stays.availabilityLead : c.common.stays.noOccupied}
+              </p>
+              <button
+                type="button"
+                onClick={openBooking}
+                className="mt-6 w-full rounded-md bg-sage px-6 py-3.5 text-sm font-medium text-warm-white transition-colors hover:bg-sage-deep"
+              >
+                {range?.from && range?.to ? c.common.cta.book : c.common.stays.pickDates}
+              </button>
+            </div>
+          </Reveal>
+        </div>
+      </PageSection>
 
       <PageSection tone="linen">
         <StayCrossLinks currentId={data.id} />

@@ -2,6 +2,32 @@
  * Shared Lithuanian strings. Plain nested strings only — this whole folder can be
  * serialized to `lt.json` and mirrored as `en.json` / `ru.json` later.
  */
+type Testimonial = { name: string; country: string; quote: string; source: string };
+
+const testimonials: Testimonial[] = [
+  {
+    name: "Solveiga",
+    country: "Lietuva",
+    quote:
+      "Ir antras kartas nenuvylė. Kambarys tvarkingas, jaukus. Yra visko, ko reikia viešnagei.",
+    source: "Booking.com",
+  },
+  {
+    name: "Giedrė",
+    country: "Lietuva",
+    quote:
+      "Labai patogi vieta, švarus ir gražūs apartamentai, radom visas reikalingas higienos priemones.",
+    source: "Booking.com",
+  },
+  {
+    name: "Erika",
+    country: "Danija",
+    quote:
+      "Nuomojamės kambarį trims žmonėms, ir viskas patiko! Lovos patogios, pagalvės patogios, gražūs patogūs vonios kambarys. Virtuvytė maža bet visko ko reik lengvam gaminimui. Gražus vaizdas pro langą.",
+    source: "Booking.com",
+  },
+];
+
 export const common = {
   brand: "Dharma Stay",
   tagline: "Iš namų į namus.",
@@ -120,6 +146,7 @@ export const common = {
     consentAnd: "ir",
     consentPrivacy: "privatumo politika",
     consentError: "Norėdami tęsti, patvirtinkite sutikimą su taisyklėmis.",
+    datesLoading: "Tikriname laisvas datas…",
     dialogTitle: "Tikrinti laisvas datas",
     dialogDescription:
       "Rezervacija vyksta čia, Dharma Stay svetainėje. Apmokėjimas – banko pavedimu, rekvizitus parodysime iš karto po rezervacijos.",
@@ -157,5 +184,72 @@ export const common = {
     optionsOne: "variantas",
     optionsFew: "variantai",
     optionsMany: "variantų",
+  },
+  search: {
+    eyebrow: "Telšiai · Žemaitija",
+    title: "Apartamentai Telšių senamiestyje",
+    lead: "Pasirinkite datas ir svečių skaičių — iš karto parodysime, kas laisva.",
+    datesLabel: "Datos",
+    datesPlaceholder: "Atvykimas — išvykimas",
+    guestsLabel: "Svečiai",
+    submit: "Ieškoti",
+    clear: "Išvalyti",
+    done: "Gerai",
+    nightOne: "naktis",
+    nightFew: "naktys",
+    nightMany: "naktų",
+    adults: "Suaugę",
+    adultsHint: "nuo 13 m.",
+    children: "Vaikai",
+    childrenHint: "2–12 m.",
+    infants: "Kūdikiai",
+    infantsHint: "iki 2 m.",
+    adultOne: "suaugęs",
+    adultFew: "suaugę",
+    adultMany: "suaugusių",
+    childOne: "vaikas",
+    childFew: "vaikai",
+    childMany: "vaikų",
+    infantOne: "kūdikis",
+    infantFew: "kūdikiai",
+    infantMany: "kūdikių",
+    needDates: "Pasirinkite datas",
+    checkIn: "Atvykimas",
+    checkOut: "Išvykimas",
+    nightsLabel: "Naktys",
+
+  },
+  results: {
+    seoTitle: "Laisvi kambariai — Dharma Stay",
+    seoDescription:
+      "Pasirinktomis datomis laisvi Dharma Stay apartamentai ir namelis Telšiuose. Rezervuokite tiesiogiai, be tarpininkų.",
+    eyebrow: "Laisvi numeriai",
+    title: "Laisvi pasirinktomis datomis",
+    missingDates: "Pasirinkite atvykimo ir išvykimo datas — parodysime, kas laisva.",
+    loading: "Tikriname laisvus numerius…",
+    empty: "Šiomis dienomis laisvų numerių nėra",
+    emptyHint: "Pabandykite kitas datas arba sumažinkite svečių skaičių.",
+    error: "Nepavyko patikrinti laisvų numerių.",
+    retry: "Bandyti dar kartą",
+    forStay: "visam laikotarpiui",
+    perNight: "nakčiai",
+    openGallery: "Žiūrėti nuotraukas",
+    closeGallery: "Uždaryti",
+    prev: "Ankstesnė",
+    next: "Kita",
+    foundOne: "laisvas numeris",
+    foundFew: "laisvi numeriai",
+    foundMany: "laisvų numerių",
+    moreInfo: "Daugiau",
+    lessInfo: "Uždaryti",
+    detailsTitle: "Išsami informacija",
+    amenitiesTitle: "Kambario patogumai",
+  },
+  testimonials: {
+    eyebrow: "Booking.com įvertinimai",
+    title: "Ką sako svečiai",
+    prev: "Ankstesni atsiliepimai",
+    next: "Kiti atsiliepimai",
+    items: testimonials,
   },
 } as const;

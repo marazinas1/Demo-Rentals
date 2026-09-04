@@ -1,5 +1,7 @@
 import restobarasImageAsset from "@/assets/restobaras-space.jpg.asset.json";
+const restobarasImage = restobarasImageAsset.url;
 import restobarasImageWebpAsset from "@/assets/restobaras-space.webp.asset.json";
+const restobarasImageWebp = restobarasImageWebpAsset.url;
 import { ContactCta } from "@/components/site/ContactCta";
 import { PageHero } from "@/components/site/PageHero";
 import { PageSection, Prose } from "@/components/site/Prose";
@@ -55,8 +57,8 @@ function RestobarPage() {
         eyebrow={c.restobaras.eyebrow}
         title={c.restobaras.title}
         lead={c.restobaras.lead}
-        image={restobarasImageAsset.url}
-        imageWebp={restobarasImageWebpAsset.url}
+        image={restobarasImage}
+        imageWebp={restobarasImageWebp}
         imageAlt="Dharma Stay restobaras"
         crumbs={[{ label: c.common.nav.home, to: "/" }, { label: c.restobaras.title }]}
       />

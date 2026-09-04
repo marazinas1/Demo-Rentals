@@ -58,7 +58,7 @@ export function PageHero({
 
       <div
         className={cn(
-          "relative mx-auto flex max-w-7xl flex-col items-center px-6 text-center lg:px-12",
+          "relative mx-auto flex max-w-[84rem] flex-col items-center px-6 text-center lg:px-12",
           hasImage
             ? "min-h-[420px] justify-end pb-16 pt-40 lg:min-h-[520px] lg:pb-20"
             : "min-h-[280px] justify-center py-20 pt-32 lg:min-h-[340px] lg:py-24 lg:pt-36",

@@ -28,6 +28,7 @@ export function SiteHeader() {
   const common = content.common;
   const nav = mainNav(locale);
   const homePath = localizePath("/", locale);
+  const isHeroPage = pathname === homePath;
 
   // The header CTA leads to the shared availability calendar on the home page.
   const goToAvailability = () => {
@@ -69,7 +70,7 @@ export function SiteHeader() {
     };
   }, []);
 
-  const solid = scrolled || menuOpen || pathname !== homePath;
+  const solid = scrolled || menuOpen || !isHeroPage;
   const linkTone = solid ? "text-stone hover:text-sage" : "text-warm-white/85 hover:text-warm-white";
 
   return (
@@ -79,7 +80,7 @@ export function SiteHeader() {
         solid ? "border-b border-border/70 bg-linen/95 backdrop-blur-sm" : "bg-transparent",
       )}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 py-2 lg:px-12 lg:py-3">
+      <div className="mx-auto grid max-w-[84rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 py-2 lg:px-12 lg:py-3">
         <LocaleLink
           to="/"
           aria-label={`${common.brand} — ${common.nav.home}`}
@@ -123,7 +124,7 @@ export function SiteHeader() {
                   </button>
                   {openGroup === entry.label ? (
                     <div className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3">
-                      <ul className="overflow-hidden rounded-2xl border border-border bg-warm-white py-2 shadow-lift">
+                      <ul className="overflow-hidden rounded-md border border-border bg-warm-white py-2 shadow-lift">
                         {entry.items.map((item) => (
                           <li key={item.to}>
                             <LocaleLink
@@ -156,7 +157,7 @@ export function SiteHeader() {
             type="button"
             onClick={goToAvailability}
             className={cn(
-              "hidden rounded-full px-5 py-2.5 text-sm font-medium transition-colors lg:inline-flex",
+              "hidden rounded-md px-5 py-2.5 text-sm font-medium transition-colors lg:inline-flex",
               solid
                 ? "bg-sage text-warm-white hover:bg-sage-deep"
                 : "border border-warm-white/70 text-warm-white hover:bg-warm-white hover:text-ink",
@@ -244,7 +245,7 @@ export function SiteHeader() {
               setMenuOpen(false);
               goToAvailability();
             }}
-            className="mt-6 w-full rounded-full bg-sage px-5 py-3.5 text-sm font-medium text-warm-white"
+            className="mt-6 w-full rounded-md bg-sage px-5 py-3.5 text-sm font-medium text-warm-white"
           >
             {common.cta.checkDates}
           </button>

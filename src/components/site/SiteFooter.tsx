@@ -14,7 +14,7 @@ export function SiteFooter() {
   const links = footerNav(locale);
   return (
     <footer id="kontaktai" className="bg-sage-deep text-warm-white">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-12">
+      <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-12">
         <div className="grid gap-12 md:grid-cols-3">
           <div>
             <Enso className="h-9 w-9 text-warm-white/60" />

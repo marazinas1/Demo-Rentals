@@ -10,6 +10,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { getPropertySettings } from "@/lib/property-settings.functions";
 import { useDefaultLanguage } from "@/hooks/useDefaultLanguage";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { AssistantWidget } from "@/components/admin/assistant/AssistantWidget";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminLayout,
@@ -30,7 +31,7 @@ function AdminLayout() {
     queryKey: ["property-settings"],
     queryFn: () => fetchSettings(),
   });
-  const brandName = settingsData?.settings.displayName?.trim() || "StageHomy";
+  const brandName = settingsData?.settings.displayName?.trim() || "Revoo";
   const { location } = useRouterState();
 
   if (isLoading) {
@@ -89,7 +90,7 @@ function AdminLayout() {
       <div className="mt-auto space-y-1 border-t border-sidebar-border px-2 py-3 text-sidebar-foreground">
           <LanguageSwitcher />
           <a
-            href="https://demo-rentals.stagehomy.com/"
+            href="https://dharma.revoo.lt/"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setNavOpen(false)}
@@ -145,6 +146,7 @@ function AdminLayout() {
       <main className="flex-1 overflow-x-hidden px-4 py-4 md:px-6 md:py-6">
         <Outlet />
       </main>
+      <AssistantWidget />
     </div>
   );
 }

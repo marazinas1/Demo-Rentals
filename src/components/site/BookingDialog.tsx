@@ -14,6 +14,7 @@ import {
   type BookingDates,
   type BookingProperty,
 } from "@/components/site/booking-context";
+import { BookingDateRange } from "@/components/site/BookingDateRange";
 import { Enso } from "@/components/site/Enso";
 import {
   Dialog,
@@ -29,7 +30,7 @@ import { storeBooking } from "@/lib/booking-storage";
 import { propertiesQueryFor } from "@/lib/property-queries";
 import { formatPrice } from "@/lib/property-view";
 import type { ExtraService } from "@/lib/rentivo-schemas";
-import { createBookingFn, getQuote } from "@/lib/rentivo.functions";
+import { createBookingFn, getProperty, getQuote } from "@/lib/rentivo.functions";
 
 export type { BookingDates, BookingProperty } from "@/components/site/booking-context";
 export { useBooking } from "@/components/site/booking-context";
@@ -123,7 +124,7 @@ function TextField({
         autoComplete={autoComplete}
         onChange={(event) => onChange(event.target.value)}
         aria-invalid={error ? true : undefined}
-        className="w-full rounded-xl border border-border bg-linen px-4 py-3 text-sm text-ink"
+        className="w-full rounded-md border border-border bg-linen px-4 py-3 text-sm text-ink"
       />
       {error ? <span className="block text-xs text-stone">{error}</span> : null}
     </label>
@@ -164,7 +165,7 @@ function GuestField({
           const next = Number(event.target.value);
           onChange(Number.isFinite(next) ? Math.min(50, Math.max(min, Math.trunc(next))) : min);
         }}
-        className="w-full rounded-xl border border-border bg-linen px-4 py-3 text-sm text-ink"
+        className="w-full rounded-md border border-border bg-linen px-4 py-3 text-sm text-ink"
       />
     </label>
   );
@@ -259,6 +260,14 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   const propertyOptions = useQuery({
     ...propertiesQueryFor(locale),
     enabled: isOpen && !property,
+  });
+
+  const occupancy = useQuery({
+    queryKey: ["property-occupancy", stayId, locale] as const,
+    enabled: isOpen && UUID_RE.test(stayId),
+    staleTime: 60_000,
+    retry: false,
+    queryFn: () => getProperty({ data: { id: stayId, language: locale } }),
   });
 
   const open = useCallback((id?: string, dates?: BookingDates, prop?: BookingProperty) => {
@@ -391,7 +400,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     <BookingContext.Provider value={value}>
       {children}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-h-[90vh] overflow-y-auto rounded-2xl border-border bg-warm-white p-0 sm:max-w-lg">
+        <DialogContent className="max-h-[90vh] overflow-y-auto rounded-lg border-border bg-warm-white p-0 sm:max-w-lg">
           <div className="p-6 sm:p-8">
             <DialogHeader className="space-y-3 text-left">
               <Enso className="h-8 w-8" />
@@ -404,33 +413,24 @@ export function BookingProvider({ children }: { children: ReactNode }) {
             </DialogHeader>
 
             <form className="mt-7 space-y-5" onSubmit={handleSubmit}>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="block space-y-2">
-                  <span className="label-caps text-stone">{common.stays.checkin}</span>
-                  <input
-                    type="date"
-                    name="checkin"
-                    value={checkin}
-                    onChange={(event) => setCheckin(event.target.value)}
-                    className="w-full rounded-xl border border-border bg-linen px-4 py-3 text-sm text-ink"
-                  />
-                </label>
-                <label className="block space-y-2">
-                  <span className="label-caps text-stone">{common.stays.checkout}</span>
-                  <input
-                    type="date"
-                    name="checkout"
-                    value={checkout}
-                    onChange={(event) => setCheckout(event.target.value)}
-                    className="w-full rounded-xl border border-border bg-linen px-4 py-3 text-sm text-ink"
-                  />
-                </label>
+              <div className="space-y-2">
+                <span className="label-caps text-stone">{common.stays.availabilityTitle}</span>
+                <BookingDateRange
+                  occupied={occupancy.data?.occupied ?? []}
+                  checkin={checkin}
+                  checkout={checkout}
+                  isLoading={occupancy.isFetching}
+                  onChange={(from, to) => {
+                    setCheckin(from);
+                    setCheckout(to);
+                  }}
+                />
               </div>
 
               <div className="block space-y-2">
                 <span className="label-caps text-stone">{common.booking.stayLabel}</span>
                 {property ? (
-                  <p className="w-full rounded-xl border border-border bg-linen px-4 py-3 text-sm text-ink">
+                  <p className="w-full rounded-md border border-border bg-linen px-4 py-3 text-sm text-ink">
                     {property?.name ?? common.nav.stays}
                   </p>
                 ) : (
@@ -438,7 +438,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
                     name="stay"
                     value={stayId}
                     onChange={(event) => setStayId(event.target.value)}
-                    className="w-full rounded-xl border border-border bg-linen px-4 py-3 text-sm text-ink"
+                    className="w-full rounded-md border border-border bg-linen px-4 py-3 text-sm text-ink"
                   >
                     <option value="">{common.stays.pickProperty}</option>
                     {(propertyOptions.data ?? []).map((item) => (
@@ -480,7 +480,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
                     return (
                       <label
                         key={extra.name}
-                        className="flex cursor-pointer items-center justify-between gap-4 rounded-xl border border-border bg-linen px-4 py-3"
+                        className="flex cursor-pointer items-center justify-between gap-4 rounded-md border border-border bg-linen px-4 py-3"
                       >
                         <span className="flex items-center gap-3 text-sm text-ink">
                           <input
@@ -504,7 +504,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
                 </fieldset>
               ) : null}
 
-              <div aria-live="polite" className="rounded-xl bg-linen p-5">
+              <div aria-live="polite" className="rounded-md bg-linen p-5">
                 {!canQuote ? (
                   <p className="text-sm text-stone">{common.booking.pickDatesPrompt}</p>
                 ) : quote.isPending || quote.isFetching ? (
@@ -547,7 +547,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
                 </div>
               </fieldset>
 
-              <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-border bg-linen px-4 py-3 text-sm text-ink">
+              <label className="flex cursor-pointer items-center gap-3 rounded-md border border-border bg-linen px-4 py-3 text-sm text-ink">
                 <input
                   type="checkbox"
                   checked={isCompany}
@@ -622,7 +622,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
               </label>
 
               {submitError ? (
-                <p role="alert" className="rounded-xl bg-linen p-4 text-sm text-ink">
+                <p role="alert" className="rounded-md bg-linen p-4 text-sm text-ink">
                   {submitError}
                 </p>
               ) : null}
@@ -630,7 +630,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
               <button
                 type="submit"
                 disabled={!canSubmit}
-                className="flex w-full items-center justify-center gap-3 rounded-full bg-sage px-6 py-3.5 text-sm font-medium text-warm-white disabled:opacity-60"
+                className="flex w-full items-center justify-center gap-3 rounded-md bg-sage px-6 py-3.5 text-sm font-medium text-warm-white disabled:opacity-60"
               >
                 {isSubmitting ? (
                   <span

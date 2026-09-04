@@ -38,7 +38,7 @@ export function PropertyIntro({
         </Reveal>
         {image ? (
           <Reveal direction="right" delay={100}>
-            <div className="overflow-hidden rounded-2xl shadow-soft">
+            <div className="overflow-hidden rounded-md shadow-soft">
               <img
                 src={image}
                 alt={imageAlt}

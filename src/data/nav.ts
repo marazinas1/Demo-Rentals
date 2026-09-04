@@ -6,7 +6,7 @@ export type RoutePath = string;
 export type NavLink = { label: string; to: RoutePath };
 export type NavEntry = NavLink | { label: string; items: NavLink[] };
 
-const FALLBACK_SITE_URL = "https://demo-rentals.stagehomy.com";
+const FALLBACK_SITE_URL = "https://dharma.revoo.lt";
 
 /** Canonical site origin; override with VITE_SITE_URL if the domain changes. */
 export const SITE_URL = (
@@ -16,6 +16,7 @@ export const SITE_URL = (
 export function mainNav(locale: Locale): NavEntry[] {
   const { nav } = getContent(locale).common;
   return [
+    { label: nav.home, to: "/" },
     { label: nav.about, to: "/apie" },
     { label: nav.stays, to: "/apartamentai" },
     { label: nav.restobar, to: "/restobaras" },

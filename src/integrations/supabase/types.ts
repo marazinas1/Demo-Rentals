@@ -100,6 +100,30 @@ export type Database = {
         }
         Relationships: []
       }
+      assistant_messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       booking_notifications: {
         Row: {
           booking_id: string
@@ -168,6 +192,7 @@ export type Database = {
           id: string
           infants_count: number
           is_vat_payer: boolean
+          language: string | null
           location: string
           mileage_in: number | null
           mileage_out: number | null
@@ -219,6 +244,7 @@ export type Database = {
           id?: string
           infants_count?: number
           is_vat_payer?: boolean
+          language?: string | null
           location?: string
           mileage_in?: number | null
           mileage_out?: number | null
@@ -270,6 +296,7 @@ export type Database = {
           id?: string
           infants_count?: number
           is_vat_payer?: boolean
+          language?: string | null
           location?: string
           mileage_in?: number | null
           mileage_out?: number | null
@@ -1362,7 +1389,9 @@ export type Database = {
           assigned_at: string | null
           assigned_to: string | null
           created_at: string
+          has_issue: boolean
           id: string
+          issue_note: string
           note: string
           property_id: string
           status: string
@@ -1373,7 +1402,9 @@ export type Database = {
           assigned_at?: string | null
           assigned_to?: string | null
           created_at?: string
+          has_issue?: boolean
           id?: string
+          issue_note?: string
           note?: string
           property_id: string
           status?: string
@@ -1384,7 +1415,9 @@ export type Database = {
           assigned_at?: string | null
           assigned_to?: string | null
           created_at?: string
+          has_issue?: boolean
           id?: string
+          issue_note?: string
           note?: string
           property_id?: string
           status?: string

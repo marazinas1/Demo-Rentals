@@ -33,7 +33,7 @@ export function StaysShell({
         id="apartamentai"
         className="-mt-8 scroll-mt-24 bg-linen px-6 pb-24 lg:px-12 lg:pb-32"
       >
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[84rem]">
           {filtered ? (
             <div className="mb-8">
               <LocaleLink
@@ -48,7 +48,7 @@ export function StaysShell({
         </div>
       </section>
       <div className="bg-linen px-6 pb-24 lg:px-12 lg:pb-32">
-        <Reveal className="mx-auto max-w-7xl">
+        <Reveal className="mx-auto max-w-[84rem]">
           <p className="text-sm text-stone">{apartamentai.note}</p>
         </Reveal>
       </div>
