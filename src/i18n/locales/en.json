@@ -632,6 +632,7 @@
     "lt": "Lietuvių"
   },
   "nav": {
+    "analytics": "Analytics",
     "bookings": "Bookings",
     "content": "Content",
     "contracts": "Contracts",
@@ -641,6 +642,7 @@
     "properties": "Properties",
     "settings": "General settings",
     "signOut": "Sign out",
+    "users": "Users",
     "website": "Website"
   },
   "properties": {
