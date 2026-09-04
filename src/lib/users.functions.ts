@@ -1,7 +1,24 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { assertAdmin } from "./users.server";
+import { assertOwner, isDeveloper } from "./users.server";
+
+
+/** Developer accounts are untouchable for everybody except the developer. */
+async function assertNotDeveloperTarget(
+  context: { supabase: any; userId: string },
+  targetUserId: string,
+) {
+  if (await isDeveloper(context)) return;
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { data } = await supabaseAdmin
+    .from("user_roles")
+    .select("role")
+    .eq("user_id", targetUserId)
+    .eq("role", "developer" as never)
+    .maybeSingle();
+  if (data) throw new Error("Developer paskyros keisti negalima.");
+}
 
 export const inviteUser = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
@@ -9,14 +26,14 @@ export const inviteUser = createServerFn({ method: "POST" })
     z
       .object({
         email: z.string().trim().email(),
-        role: z.enum(["admin", "housekeeper"]),
+        role: z.enum(["owner", "administrator", "housekeeper"]),
         fullName: z.string().trim().max(120).optional(),
         redirectTo: z.string().url().optional(),
       })
       .parse(d),
   )
   .handler(async ({ data, context }) => {
-    await assertAdmin(context);
+    await assertOwner(context);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const { appLink } = await import("@/lib/app-url.server");
@@ -59,7 +76,11 @@ export const inviteUser = createServerFn({ method: "POST" })
     if (actionLink) {
       const { sendEmail } = await import("@/lib/notifications.server");
       const roleLabel =
-        data.role === "admin" ? "administratoriaus" : "kambarių tvarkytojos";
+        data.role === "owner"
+          ? "savininko"
+          : data.role === "administrator"
+            ? "administratoriaus"
+            : "kambarių tvarkytojos";
       await sendEmail({
         to: data.email,
         subject: "Kvietimas prisijungti prie Dharma Stay sistemos",
@@ -81,7 +102,7 @@ export const inviteUser = createServerFn({ method: "POST" })
 export const listUsersWithRoles = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await assertAdmin(context);
+    await assertOwner(context);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data, error } = await supabaseAdmin
       .from("user_roles")
@@ -118,7 +139,8 @@ export const updateUserName = createServerFn({ method: "POST" })
     z.object({ userId: z.string().uuid(), fullName: z.string().trim().max(120) }).parse(d),
   )
   .handler(async ({ data, context }) => {
-    await assertAdmin(context);
+    await assertOwner(context);
+    await assertNotDeveloperTarget(context, data.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin.auth.admin.updateUserById(data.userId, {
       user_metadata: { full_name: data.fullName },
@@ -131,8 +153,9 @@ export const deleteUser = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d) => z.object({ userId: z.string().uuid() }).parse(d))
   .handler(async ({ data, context }) => {
-    await assertAdmin(context);
+    await assertOwner(context);
     if (data.userId === context.userId) throw new Error("Negalite ištrinti savo paskyros.");
+    await assertNotDeveloperTarget(context, data.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     await supabaseAdmin.from("user_roles").delete().eq("user_id", data.userId);

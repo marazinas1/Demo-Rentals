@@ -332,20 +332,37 @@ export const deleteProperty = createServerFn({ method: "POST" })
 export const getMyRole = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const { supabase, userId } = context;
-    const [{ data: isAdmin, error: adminError }, { data: isHousekeeper, error: staffError }] =
-      await Promise.all([
-        supabase.rpc("has_role", { _user_id: userId, _role: "admin" }),
-        supabase.rpc("has_role", { _user_id: userId, _role: "housekeeper" }),
-      ]);
-    if (adminError) throw new Error(adminError.message);
-    if (staffError) throw new Error(staffError.message);
+    const { supabase, userId, claims } = context;
+    const { data, error } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId);
+    if (error) throw new Error(error.message);
 
-    const roles: Array<"admin" | "housekeeper"> = [];
-    if (isAdmin) roles.push("admin");
-    if (isHousekeeper) roles.push("housekeeper");
-    return { userId, isAdmin: Boolean(isAdmin), roles };
+    const roles = (data ?? []).map((r) => String(r.role));
+    const isDeveloper = roles.includes("developer");
+    const isOwner = isDeveloper || roles.includes("owner");
+    // Legacy "admin" rows keep full admin-level access.
+    const isAdmin =
+      isOwner || roles.includes("administrator") || roles.includes("admin");
+    const isHousekeeper = roles.includes("housekeeper");
+
+    // Highest role in the hierarchy, used for labels and menu gating.
+    const role = isDeveloper
+      ? "developer"
+      : roles.includes("owner")
+        ? "owner"
+        : isAdmin
+          ? "administrator"
+          : isHousekeeper
+            ? "housekeeper"
+            : "user";
+
+    const email = (claims as { email?: string } | null)?.email ?? "";
+
+    return { userId, email, role, roles, isDeveloper, isOwner, isAdmin };
   });
+
 
 // Self-serve admin bootstrap was removed: it allowed any registered user to
 // escalate to admin. Admin roles are granted directly in the database only.

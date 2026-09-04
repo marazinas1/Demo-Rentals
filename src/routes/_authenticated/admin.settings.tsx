@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useMemo, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Loader2, Settings2 } from "lucide-react";
@@ -59,7 +59,9 @@ function PropertySettingsPage() {
   const [active, setActive] = useState<NavId>("general");
 
   const { data: role } = useQuery({ queryKey: ["my-role"], queryFn: () => fetchRole() });
-  const canEdit = Boolean(role?.isAdmin);
+  const canEdit = Boolean(role?.isOwner);
+  // Administrators and housekeepers have no access to settings.
+  const forbidden = Boolean(role) && !role?.isOwner;
 
   const { data: properties } = useQuery({
     queryKey: ["admin-properties-settings"],
@@ -174,6 +176,8 @@ function PropertySettingsPage() {
 
   const section = SETTINGS_SECTIONS.find((s) => s.id === active);
   const settings = data?.settings ?? DEFAULT_PROPERTY_SETTINGS;
+
+  if (forbidden) return <Navigate to="/admin" replace />;
 
   return (
     <div className="space-y-6">
