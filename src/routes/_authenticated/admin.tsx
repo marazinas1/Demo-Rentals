@@ -56,9 +56,17 @@ function AdminLayout() {
     { to: "/admin/housekeeping", label: t("nav.housekeeping"), icon: Sparkles },
     { to: "/admin/contracts", label: t("nav.contracts"), icon: FileText },
     { to: "/admin/expenses", label: t("nav.expenses"), icon: Wallet },
-    { to: "/admin/settings", label: t("nav.settings"), icon: Settings2 },
+    // Settings (and user management) are owner-level only.
+    ...(role.isOwner
+      ? [{ to: "/admin/settings", label: t("nav.settings"), icon: Settings2 } as const]
+      : []),
     { to: "/admin/content", label: t("nav.content"), icon: FileEdit },
   ] as const;
+
+  const roleLabel = t(`settings.users.role_${role.role}`, {
+    defaultValue: role.role,
+  });
+
 
   const navContent = (
     <>
