@@ -6,7 +6,7 @@ export type RoutePath = string;
 export type NavLink = { label: string; to: RoutePath };
 export type NavEntry = NavLink | { label: string; items: NavLink[] };
 
-const FALLBACK_SITE_URL = "https://dharma.revoo.lt";
+const FALLBACK_SITE_URL = "https://demo-rentals.deerva.com";
 
 /** Canonical site origin; override with VITE_SITE_URL if the domain changes. */
 export const SITE_URL = (
