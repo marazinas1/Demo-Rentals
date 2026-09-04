@@ -177,6 +177,8 @@ function PropertySettingsPage() {
   const section = SETTINGS_SECTIONS.find((s) => s.id === active);
   const settings = data?.settings ?? DEFAULT_PROPERTY_SETTINGS;
 
+  if (forbidden) return <Navigate to="/admin" replace />;
+
   return (
     <div className="space-y-6">
       <header className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
