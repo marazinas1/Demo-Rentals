@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { assertAdmin, assertOwner, isDeveloper } from "./users.server";
+import { assertOwner, isDeveloper } from "./users.server";
 
 
 /** Developer accounts are untouchable for everybody except the developer. */
