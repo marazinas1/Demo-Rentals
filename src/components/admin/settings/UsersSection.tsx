@@ -33,9 +33,14 @@ import {
   updateUserName,
 } from "@/lib/users.functions";
 
+type InvitableRole = "owner" | "administrator" | "housekeeper";
+
 const ROLE_LABEL_KEYS: Record<string, string> = {
+  developer: "settings.users.role_developer",
+  owner: "settings.users.role_owner",
+  administrator: "settings.users.role_administrator",
   admin: "settings.users.roleAdmin",
-  housekeeper: "settings.users.roleHousekeeper",
+  housekeeper: "settings.users.role_housekeeper",
   user: "settings.users.roleUser",
 };
 
@@ -57,7 +62,7 @@ export function UsersSection({ canEdit }: { canEdit: boolean }) {
 
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
-  const [role, setRole] = useState<"admin" | "housekeeper">("housekeeper");
+  const [role, setRole] = useState<InvitableRole>("housekeeper");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingName, setEditingName] = useState("");
 
@@ -146,15 +151,20 @@ export function UsersSection({ canEdit }: { canEdit: boolean }) {
               <Label>{t("settings.users.role")}</Label>
               <Select
                 value={role}
-                onValueChange={(v) => setRole(v as "admin" | "housekeeper")}
+                onValueChange={(v) => setRole(v as InvitableRole)}
                 disabled={!canEdit}
               >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="admin">{t("settings.users.roleAdmin")}</SelectItem>
-                  <SelectItem value="housekeeper">{t("settings.users.roleHousekeeper")}</SelectItem>
+                  <SelectItem value="owner">{t("settings.users.role_owner")}</SelectItem>
+                  <SelectItem value="administrator">
+                    {t("settings.users.role_administrator")}
+                  </SelectItem>
+                  <SelectItem value="housekeeper">
+                    {t("settings.users.role_housekeeper")}
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -226,7 +236,7 @@ export function UsersSection({ canEdit }: { canEdit: boolean }) {
                         ) : (
                           <div className="flex items-center gap-1">
                             <span>{u.fullName || u.email || u.userId}</span>
-                            {canEdit && (
+                            {canEdit && u.role !== "developer" && (
                               <Button
                                 variant="ghost"
                                 size="icon"
@@ -255,7 +265,7 @@ export function UsersSection({ canEdit }: { canEdit: boolean }) {
                             <Button
                               variant="ghost"
                               size="icon"
-                              disabled={!canEdit || del.isPending}
+                              disabled={!canEdit || u.role === "developer" || del.isPending}
                               aria-label={t("settings.users.deleteAria")}
                             >
                               <Trash2 className="h-4 w-4 text-destructive" />

@@ -4,23 +4,23 @@
     "noAdminTitle": "You don't have administrator rights"
   },
   "assistant": {
-    "title": "Deerva assistant",
-    "subtitle": "Explains where and how to do something. You make the changes yourself.",
-    "open": "Open assistant",
     "clear": "Clear conversation",
     "cleared": "Conversation cleared.",
-    "send": "Send",
-    "placeholder": "Ask how to do something…",
+    "disclaimer": "The assistant only advises – it never changes settings.",
+    "empty": "No reply received – try rephrasing the question.",
+    "error": "Could not get a reply. Please try again.",
     "intro": "Hi! I'll help you find your way around the admin panel. For example:",
+    "open": "Open assistant",
+    "placeholder": "Ask how to do something…",
+    "send": "Send",
+    "subtitle": "Explains where and how to do something. You make the changes yourself.",
     "suggestions": [
       "What is our current occupancy and is it normal for the market?",
       "How much revenue did we make today, yesterday and this year?",
       "What is our ROI and how can I increase occupancy?",
       "How do I change room photos on the website?"
     ],
-    "disclaimer": "The assistant only advises – it never changes settings.",
-    "error": "Could not get a reply. Please try again.",
-    "empty": "No reply received – try rephrasing the question.",
+    "title": "Deerva assistant",
     "tooLong": "Message too long (max {{max}} characters)."
   },
   "auth": {
@@ -1171,6 +1171,10 @@
       "roleAdmin": "Administrator",
       "roleHousekeeper": "Housekeeper",
       "roleUser": "User",
+      "role_administrator": "Administrator",
+      "role_developer": "Developer",
+      "role_housekeeper": "Housekeeper",
+      "role_owner": "Owner",
       "saveName": "Save",
       "sending": "Sending…"
     },

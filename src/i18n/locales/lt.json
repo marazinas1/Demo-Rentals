@@ -4,23 +4,23 @@
     "noAdminTitle": "Neturite administratoriaus teisių"
   },
   "assistant": {
-    "title": "Deerva Asistentė",
-    "subtitle": "\n",
-    "open": "Atidaryti pagalbininką",
     "clear": "Išvalyti pokalbį",
     "cleared": "Pokalbis išvalytas.",
-    "send": "Siųsti",
-    "placeholder": "Paklauskite, kaip ką nors padaryti…",
+    "disclaimer": "Asistentas tik pataria – nustatymų nekeičia.",
+    "empty": "Atsakymo negavau – pabandykite performuluoti klausimą.",
+    "error": "Nepavyko gauti atsakymo. Pabandykite dar kartą.",
     "intro": "Sveiki! 👋 Esu Eva –  virtuali Deerva asistentė. Galiu atsakyti į klausimus, paaiškinti, kaip atlikti užduotis šioje sistemoje ir padėti rasti reikiamą informaciją. Kuo galiu padėti?",
+    "open": "Atidaryti pagalbininką",
+    "placeholder": "Paklauskite, kaip ką nors padaryti…",
+    "send": "Siųsti",
+    "subtitle": "\n",
     "suggestions": [
       "Koks šiuo metu viešbučio užimtumas ir ar jis normalus rinkoje?",
       "Kiek pajamų uždirbome šiandien, vakar ir šiais metais?",
       "Koks dabartinis ROI ir ką daryti, kad padidinčiau užimtumą?",
       "Kaip pakeisti kambarių nuotraukas svetainėje?"
     ],
-    "disclaimer": "Asistentas tik pataria – nustatymų nekeičia.",
-    "error": "Nepavyko gauti atsakymo. Pabandykite dar kartą.",
-    "empty": "Atsakymo negavau – pabandykite performuluoti klausimą.",
+    "title": "Deerva Asistentė",
     "tooLong": "Žinutė per ilga (iki {{max}} simbolių)."
   },
   "auth": {
@@ -1173,6 +1173,10 @@
       "roleAdmin": "Administratorius",
       "roleHousekeeper": "Kambarių tvarkytoja",
       "roleUser": "Vartotojas",
+      "role_administrator": "Administratorius",
+      "role_developer": "Developer",
+      "role_housekeeper": "Kambarių tvarkytoja",
+      "role_owner": "Savininkas",
       "saveName": "Išsaugoti",
       "sending": "Siunčiama…"
     },
