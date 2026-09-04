@@ -104,5 +104,10 @@ export async function computeAvailability(input: unknown): Promise<AvailabilityS
     nights,
     groups,
     free_ids: free.map((row) => row.entry.property.id),
+    free_units: free.map((row) => ({
+      id: row.entry.property.id,
+      total: row.total,
+      currency: row.currency,
+    })),
   };
 }

@@ -44,7 +44,7 @@ export const PREVIEW_SAMPLE: Record<string, string> = {
   "{{total_amount}}": "480,00",
   "{{currency}}": "EUR",
   "{{phone}}": "+370 600 00000",
-  "{{email}}": "info@stagehomy.com",
+  "{{email}}": "info@revoo.lt",
   "{{review_link}}": "https://g.page/r/atsiliepimas",
 };
 

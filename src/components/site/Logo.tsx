@@ -1,4 +1,5 @@
 import logoUrlAsset from "@/assets/logo-dharma.png.asset.json";
+const logoUrl = logoUrlAsset.url;
 import { cn } from "@/lib/utils";
 
 /**
@@ -12,8 +13,8 @@ export function Logo({ className, title = "Dharma Stay" }: { className?: string;
       aria-label={title}
       className={cn("block aspect-square bg-current", className)}
       style={{
-        WebkitMaskImage: `url(${logoUrlAsset.url})`,
-        maskImage: `url(${logoUrlAsset.url})`,
+        WebkitMaskImage: `url(${logoUrl})`,
+        maskImage: `url(${logoUrl})`,
         WebkitMaskRepeat: "no-repeat",
         maskRepeat: "no-repeat",
         WebkitMaskSize: "contain",

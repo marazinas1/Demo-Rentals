@@ -66,7 +66,7 @@ export function AvailabilityCalendar({
     range?.from && range?.to ? differenceInCalendarDays(range.to, range.from) : 0;
 
   return (
-    <div className={cn("rounded-2xl bg-warm-white p-6 shadow-soft sm:p-8", className)}>
+    <div className={cn("rounded-md bg-warm-white p-6 shadow-soft sm:p-8", className)}>
       <div className="flex items-start gap-4">
         <Enso className="mt-1 hidden h-8 w-8 shrink-0 text-sage sm:block" />
         <div>
@@ -136,7 +136,7 @@ export function AvailabilityCalendar({
           <button
             type="button"
             onClick={() => onRangeChange(undefined)}
-            className="ml-auto rounded-full border border-border px-4 py-1.5 text-xs text-stone transition-colors hover:text-ink"
+            className="ml-auto rounded-md border border-border px-4 py-1.5 text-xs text-stone transition-colors hover:text-ink"
           >
             {common.stays.clearDates}
           </button>

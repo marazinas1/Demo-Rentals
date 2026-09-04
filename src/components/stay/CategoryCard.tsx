@@ -25,9 +25,9 @@ export function CategoryCard({ group, index }: { group: CategoryGroup; index: nu
         to="/apartamentai/tipas/$categorySlug"
         params={{ categorySlug: categorySlug(group.code) }}
         aria-label={group.label}
-        className="group block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2"
+        className="group block h-full rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2"
       >
-      <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-warm-white shadow-soft transition-shadow duration-500 hover:shadow-lift">
+      <article className="flex h-full flex-col overflow-hidden rounded-md bg-warm-white shadow-soft transition-shadow duration-500 hover:shadow-lift">
         <div className="aspect-[4/3] overflow-hidden bg-linen">
           {group.image ? (
             <img

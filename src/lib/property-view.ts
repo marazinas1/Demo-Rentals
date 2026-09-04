@@ -13,6 +13,7 @@ export type PropertyView = {
   meta: string;
   priceFrom: number | null;
   image: string | null;
+  images: string[];
   imageAlt: string;
   amenities: string[];
 };
@@ -126,9 +127,23 @@ export function toPropertyView(property: Property, locale: Locale = DEFAULT_LOCA
     meta: propertyMeta(property, locale),
     priceFrom: typeof property.price_per_night === "number" ? property.price_per_night : null,
     image: property.cover_image_url ?? property.image_urls[0] ?? null,
+    images: dedupeImages([property.cover_image_url, ...property.image_urls]),
     imageAlt: `${property.name} — ${common.brand}`,
     amenities: knownAmenities(property.amenities, locale),
   };
+}
+
+/** Ordered, de-duplicated gallery images (cover first). */
+function dedupeImages(values: Array<string | null | undefined>): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const value of values) {
+    if (!value) continue;
+    if (seen.has(value)) continue;
+    seen.add(value);
+    out.push(value);
+  }
+  return out;
 }
 
 export function formatPrice(value: number): string {

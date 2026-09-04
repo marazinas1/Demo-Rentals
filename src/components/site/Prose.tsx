@@ -31,7 +31,7 @@ export function PageSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-7xl">{children}</div>
+      <div className="mx-auto max-w-[84rem]">{children}</div>
     </section>
   );
 }

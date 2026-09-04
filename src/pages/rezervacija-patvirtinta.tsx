@@ -83,14 +83,14 @@ function ConfirmationPage() {
       <PageSection>
         <Reveal className="mx-auto max-w-3xl space-y-8">
           {nr ? (
-            <div className="rounded-2xl border border-border bg-warm-white p-6 text-center sm:p-8">
+            <div className="rounded-md border border-border bg-warm-white p-6 text-center sm:p-8">
               <p className="label-caps text-sage">{rezervacija.numberLabel}</p>
               <p className="mt-3 font-display text-3xl font-medium tracking-wide text-ink">{nr}</p>
             </div>
           ) : null}
 
           {booking ? (
-            <div className="rounded-2xl border border-border bg-linen p-6 sm:p-8">
+            <div className="rounded-md border border-border bg-linen p-6 sm:p-8">
               <h2 className="font-display text-2xl font-medium text-ink">
                 {rezervacija.summaryTitle}
               </h2>
@@ -119,7 +119,7 @@ function ConfirmationPage() {
               </dl>
             </div>
           ) : hydrated && !booking ? (
-            <div className="rounded-2xl border border-border bg-linen p-6 sm:p-8">
+            <div className="rounded-md border border-border bg-linen p-6 sm:p-8">
               <h2 className="font-display text-2xl font-medium text-ink">
                 {rezervacija.missingTitle}
               </h2>
@@ -127,7 +127,7 @@ function ConfirmationPage() {
             </div>
           ) : null}
 
-          <div className="rounded-2xl border border-border bg-warm-white p-6 sm:p-8">
+          <div className="rounded-md border border-border bg-warm-white p-6 sm:p-8">
             <h2 className="font-display text-2xl font-medium text-ink">
               {rezervacija.statusTitle}
             </h2>
@@ -138,7 +138,7 @@ function ConfirmationPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-border bg-linen p-6 sm:p-8">
+          <div className="rounded-md border border-border bg-linen p-6 sm:p-8">
             <h2 className="font-display text-2xl font-medium text-ink">
               {rezervacija.paymentTitle}
             </h2>
@@ -168,7 +168,7 @@ function ConfirmationPage() {
 
           <LocaleLink
             to="/"
-            className="inline-flex rounded-full bg-sage px-6 py-3 text-sm font-medium text-warm-white"
+            className="inline-flex rounded-md bg-sage px-6 py-3 text-sm font-medium text-warm-white"
           >
             {rezervacija.back}
           </LocaleLink>

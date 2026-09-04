@@ -41,7 +41,7 @@ export function StaysSection({
 
   return (
     <section id="apartamentai" className="scroll-mt-24 bg-linen px-6 pb-24 lg:px-12 lg:pb-32">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[84rem]">
         {headless ? null : (
           <div className="max-w-2xl">
             <p className="label-caps text-sage">{home.stays.eyebrow}</p>

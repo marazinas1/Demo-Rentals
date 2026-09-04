@@ -1,5 +1,7 @@
 import banquetImageAsset from "@/assets/banketine-sale.jpg.asset.json";
+const banquetImage = banquetImageAsset.url;
 import banquetImageWebpAsset from "@/assets/banketine-sale.webp.asset.json";
+const banquetImageWebp = banquetImageWebpAsset.url;
 import { ContactCta } from "@/components/site/ContactCta";
 import { PageHero } from "@/components/site/PageHero";
 import { PageSection, Prose } from "@/components/site/Prose";
@@ -30,8 +32,8 @@ function BanquetPage() {
         eyebrow={c.banketineSale.eyebrow}
         title={c.banketineSale.title}
         lead={c.banketineSale.lead}
-        image={banquetImageAsset.url}
-        imageWebp={banquetImageWebpAsset.url}
+        image={banquetImage}
+        imageWebp={banquetImageWebp}
         imageAlt="Banketinė salė Dharma Stay kieme Telšiuose"
         crumbs={[{ label: c.common.nav.home, to: "/" }, { label: c.banketineSale.title }]}
       />

@@ -24,7 +24,7 @@ export const Route = createFileRoute("/api/public/v1/bookings/$bookingNumber")({
             const { data, error } = await supabaseAdmin
               .from("bookings")
               .select(
-                "booking_number, property_id, date_from, date_to, status, payment_status, total_amount, customer_email, extras, extras_total",
+                "booking_number, property_id, date_from, date_to, status, payment_status, total_amount, customer_email, extras, extras_total, language",
               )
               .eq("booking_number", bookingNumber)
               .maybeSingle();
@@ -40,6 +40,7 @@ export const Route = createFileRoute("/api/public/v1/bookings/$bookingNumber")({
             const defaultLang = await loadDefaultLanguage();
             const lang =
               url.searchParams.get("language")?.trim() ||
+              (data as { language?: string }).language ||
               defaultLang;
 
             let extras = (data.extras ?? []) as Array<Record<string, unknown>>;

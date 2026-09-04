@@ -16,7 +16,7 @@ export function ExtrasSection() {
 
   return (
     <section id="papildoma" className="scroll-mt-24 bg-linen px-6 py-20 lg:px-12 lg:py-24">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[84rem]">
         <p className="label-caps text-stone">{home.extras.eyebrow}</p>
 
         <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">

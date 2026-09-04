@@ -2,6 +2,51 @@
  * Shared English strings. Plain nested strings only — this whole folder can be
  * serialized to `lt.json` and mirrored as `en.json` / `ru.json` later.
  */
+type Testimonial = { name: string; country: string; quote: string; source: string };
+
+const testimonials: Testimonial[] = [
+  {
+    name: "Balys",
+    country: "Lithuania",
+    quote: "The property is at amazing spot, you can reach amazing places on foot.",
+    source: "Booking.com",
+  },
+  {
+    name: "Anilkumar",
+    country: "Switzerland",
+    quote:
+      "1. The apartment is spacious and clean. 2. The check-in process is easy, you just use the code given to you. 3. The owner was kind and refunded part of my stay as I needed to reduce the length of it.",
+    source: "Booking.com",
+  },
+  {
+    name: "Dominika",
+    country: "Lithuania",
+    quote:
+      "Quiet spacious room, good location. Though they do not have parking it was very easy to find parking next to it. Had all you could need.",
+    source: "Booking.com",
+  },
+  {
+    name: "Craig",
+    country: "Lithuania",
+    quote: "Was clean and tidy. Staff was helpful. When we called we got help straight away.",
+    source: "Booking.com",
+  },
+  {
+    name: "Vesta",
+    country: "Lithuania",
+    quote:
+      "Location, easy self check in, availability to sleep in different beds with a friend!",
+    source: "Booking.com",
+  },
+  {
+    name: "Marija",
+    country: "Lithuania",
+    quote:
+      "I loved how helpful the owners were - solving one issue upon our arrival immediately. Rooms are modern and clean. There were wide selection of extra items - dental kit, even shaving kit, hot air iron - I was impressed!",
+    source: "Booking.com",
+  },
+];
+
 export const common = {
   brand: "Dharma Stay",
   tagline: "From home to home.",
@@ -119,6 +164,7 @@ export const common = {
     consentTerms: "terms of service",
     consentAnd: "and",
     consentPrivacy: "privacy policy",
+    datesLoading: "Checking availability…",
     dialogTitle: "Check availability",
     dialogDescription:
       "You are booking directly on the Dharma Stay website. Payment is by bank transfer — we show the details right after your booking.",
@@ -157,5 +203,72 @@ export const common = {
     optionsOne: "option",
     optionsFew: "options",
     optionsMany: "options",
+  },
+  search: {
+    eyebrow: "Telsiai · Samogitia",
+    title: "Apartments in the old town of Telsiai",
+    lead: "Pick your dates and guests — we'll show what is available right away.",
+    datesLabel: "Dates",
+    datesPlaceholder: "Check-in — check-out",
+    guestsLabel: "Guests",
+    submit: "Search",
+    clear: "Clear",
+    done: "Done",
+    nightOne: "night",
+    nightFew: "nights",
+    nightMany: "nights",
+    adults: "Adults",
+    adultsHint: "13+",
+    children: "Children",
+    childrenHint: "2–12 yrs",
+    infants: "Infants",
+    infantsHint: "under 2",
+    adultOne: "adult",
+    adultFew: "adults",
+    adultMany: "adults",
+    childOne: "child",
+    childFew: "children",
+    childMany: "children",
+    infantOne: "infant",
+    infantFew: "infants",
+    infantMany: "infants",
+    needDates: "Choose dates",
+    checkIn: "Check-in",
+    checkOut: "Check-out",
+    nightsLabel: "Nights",
+
+  },
+  results: {
+    seoTitle: "Available rooms — Dharma Stay",
+    seoDescription:
+      "Dharma Stay apartments and cottage available on your dates in Telsiai. Book directly, without intermediaries.",
+    eyebrow: "Available rooms",
+    title: "Available on your dates",
+    missingDates: "Choose check-in and check-out dates and we'll show what is available.",
+    loading: "Checking availability…",
+    empty: "No rooms available on these dates",
+    emptyHint: "Try other dates or reduce the number of guests.",
+    error: "Could not check availability.",
+    retry: "Try again",
+    forStay: "for the whole stay",
+    perNight: "per night",
+    openGallery: "View photos",
+    closeGallery: "Close",
+    prev: "Previous",
+    next: "Next",
+    foundOne: "room available",
+    foundFew: "rooms available",
+    foundMany: "rooms available",
+    moreInfo: "More",
+    lessInfo: "Close",
+    detailsTitle: "Room details",
+    amenitiesTitle: "Room amenities",
+  },
+  testimonials: {
+    eyebrow: "Booking.com reviews",
+    title: "What guests say",
+    prev: "Previous reviews",
+    next: "Next reviews",
+    items: testimonials,
   },
 };

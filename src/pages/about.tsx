@@ -57,7 +57,7 @@ function AboutPage() {
         <Reveal>
           <LocaleLink
             to="/apie/taisykles"
-            className="group flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-linen p-8 transition-shadow hover:shadow-soft"
+            className="group flex flex-wrap items-center justify-between gap-4 rounded-md bg-linen p-8 transition-shadow hover:shadow-soft"
           >
             <span>
               <span className="block font-display text-xl font-semibold text-ink">

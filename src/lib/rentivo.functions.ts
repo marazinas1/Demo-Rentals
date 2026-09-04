@@ -24,22 +24,7 @@ export const listProperties = createServerFn({ method: "GET" })
   .inputValidator((data: unknown) => languageInput.parse(data ?? {}))
   .handler(async ({ data }) => {
     const { fetchProperties } = await import("@/lib/rentivo-api.server");
-    try {
-      return await fetchProperties(data.language);
-    } catch (error) {
-      // A fresh preview may not have its Rentivo secret yet. Property lists are
-      // read-only, so render the existing empty state instead of rejecting the
-      // server-function request and taking down the route.
-      if (
-        typeof error === "object" &&
-        error !== null &&
-        "code" in error &&
-        error.code === "config_missing"
-      ) {
-        return [];
-      }
-      throw error;
-    }
+    return fetchProperties(data.language);
   });
 
 export const getProperty = createServerFn({ method: "GET" })

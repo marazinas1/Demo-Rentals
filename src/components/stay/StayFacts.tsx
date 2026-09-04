@@ -7,7 +7,7 @@ export function StayFacts({ facts, amenities }: { facts: Fact[]; amenities: stri
   const { common } = useContent();
   return (
     <Reveal>
-      <dl className="grid gap-8 rounded-2xl bg-linen p-8 sm:grid-cols-2 lg:grid-cols-4">
+      <dl className="grid gap-8 rounded-md bg-linen p-8 sm:grid-cols-2 lg:grid-cols-4">
         {facts.map((fact) => (
           <div key={fact.label}>
             <dt className="label-caps text-stone/80">{fact.label}</dt>

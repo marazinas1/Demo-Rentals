@@ -15,14 +15,23 @@ export const availabilityGroupSchema = z.object({
   currency: z.string().nullable(),
 });
 
+export const availabilityUnitSchema = z.object({
+  id: z.string(),
+  total: z.number().nullable(),
+  currency: z.string().nullable(),
+});
+
 export const availabilitySummarySchema = z.object({
   date_from: z.string(),
   date_to: z.string(),
   nights: z.number(),
   groups: z.array(availabilityGroupSchema),
   free_ids: z.array(z.string()),
+  /** Per-property totals for the requested range (same order as free_ids). */
+  free_units: z.array(availabilityUnitSchema).default([]),
 });
 
 export type AvailabilityInput = z.input<typeof availabilityInputSchema>;
+export type AvailabilityUnit = z.infer<typeof availabilityUnitSchema>;
 export type AvailabilityGroup = z.infer<typeof availabilityGroupSchema>;
 export type AvailabilitySummary = z.infer<typeof availabilitySummarySchema>;

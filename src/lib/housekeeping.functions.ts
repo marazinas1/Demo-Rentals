@@ -80,8 +80,8 @@ export const getHousekeepingWeek = createServerFn({ method: "POST" })
         name: p.name,
         sort_order: p.sort_order ?? 0,
         status: (st?.status as string) ?? "nesvarus",
-        has_issue: false,
-        issue_note: "",
+        has_issue: Boolean(st?.has_issue),
+        issue_note: (st?.issue_note as string) ?? "",
         days: days.map((date) => {
           const work = computeDayWork(list, date, stayover);
           const task = taskBy.get(`${p.id}|${date}`);
@@ -180,8 +180,8 @@ export const getHousekeepingDay = createServerFn({ method: "POST" })
           departing: work.departing,
           arriving: work.arriving,
           status: (st?.status as string) ?? "nesvarus",
-          has_issue: false,
-          issue_note: "",
+          has_issue: Boolean(st?.has_issue),
+          issue_note: (st?.issue_note as string) ?? "",
           task_status: (task?.status as string | null) ?? "laukia",
           assigned_to: assigned,
           assigned_to_name: assigned ? nameOf.get(assigned) || null : null,
